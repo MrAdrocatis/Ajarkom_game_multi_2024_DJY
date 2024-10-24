@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Move the player based on input
-        rb.velocity = moveDirection * moveSpeed;
+        rb.linearVelocity = moveDirection * moveSpeed;
 
         // Calculate the direction to aim at based on the mouse position
         Vector2 aimDirection = mousePosition - rb.position;
