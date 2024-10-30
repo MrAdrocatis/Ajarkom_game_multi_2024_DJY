@@ -1,22 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AmmoDisplay : MonoBehaviour
 {
-    public int ammo;
-    public Text ammoDisplay; 
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Text ammoDisplay;
 
-    // Update is called once per frame
-    void Update()
+    // Method to update ammo count on the UI
+    public void UpdateAmmoDisplay(int currentAmmo)
     {
-        ammoDisplay.text = ammo.ToString();
+        ammoDisplay.text = currentAmmo.ToString();
     }
 }

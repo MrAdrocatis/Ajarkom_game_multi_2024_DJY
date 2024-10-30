@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3084788785773115574}
   - component: {fileID: -6332800055530398442}
   - component: {fileID: 5185913816647839172}
+  - component: {fileID: 7753341376137048181}
   m_Layer: 0
   m_Name: Pre_Test_player
   m_TagString: Untagged
@@ -223,6 +224,21 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 3260233727930171982}
   weapon: {fileID: 1665987406550517956}
+  health: {fileID: 0}
+  healthBar: {fileID: 0}
+--- !u!114 &7753341376137048181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469046345207897503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7369614f3e0af4dafca8482c3adf42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &7854289907067651792
 GameObject:
   m_ObjectHideFlags: 0
