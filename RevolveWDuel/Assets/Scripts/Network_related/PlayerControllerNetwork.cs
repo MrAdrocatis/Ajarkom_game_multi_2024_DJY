@@ -8,51 +8,47 @@ public class PlayerControllerNetwork : NetworkBehaviour
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public Weapon weapon;
-    public Health health; // Reference to the health component
-    public HealthBarManager healthBar;
 
-    Vector2 moveDirection;
-    Vector2 mousePosition;
-
-    void Start()
-    {
-        if (IsLocalPlayer)
-        {
-            healthBar = FindObjectOfType<HealthBarManager>(); // Find and set the health bar UI
-        }
-    }
+    private Vector2 moveDirection;
+    private Vector2 mousePosition;
 
     // Update is called once per frame
     void Update()
     {
-        if (!IsLocalPlayer) return;
+        if (!IsLocalPlayer) return; // Only allow input for the local player
 
+        // Get input for movement
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
+        // Check for firing weapon
         if (Input.GetMouseButtonDown(0))
         {
             weapon.Fire();
         }
 
+        // Update movement direction based on input
         moveDirection = new Vector2(moveX, moveY).normalized;
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Update health bar for the local player
-        if (IsLocalPlayer && healthBar != null)
-        {
-            healthBar.UpdateHealthBar(health.GetCurrentHealth(), health.GetMaxHealth());
-        }
+        // Get mouse position in world space
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void FixedUpdate()
     {
-        if (!IsLocalPlayer) return;
+        if (!IsLocalPlayer) return; // Only move and rotate for the local player
 
+        // Move the player
         rb.velocity = moveDirection * moveSpeed;
 
+        // Calculate the aim direction based on the mouse position
         Vector2 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+
+        // Set the rotation based on the aim direction
         rb.rotation = aimAngle;
     }
 }
+
+
+

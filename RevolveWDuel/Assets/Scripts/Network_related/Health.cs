@@ -1,26 +1,28 @@
 using System.Collections;
-using Unity.Netcode;
 using UnityEngine;
 
-public class Health : NetworkBehaviour
+public class Health : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    private NetworkVariable<float> currentHealth = new NetworkVariable<float>();
+    public int maxHealth = 3;
+    private int currentHealth;
+
+    public delegate void HealthChangedDelegate(int newHealth);
+    public event HealthChangedDelegate OnHealthChanged;
 
     private void Start()
     {
-        if (IsServer)
-        {
-            currentHealth.Value = maxHealth;
-        }
+        currentHealth = maxHealth;
+        OnHealthChanged?.Invoke(currentHealth); // Initial health broadcast
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(int amount)
     {
-        if (!IsServer) return;
+        currentHealth -= amount;
+        currentHealth = Mathf.Max(0, currentHealth);
 
-        currentHealth.Value -= amount;
-        if (currentHealth.Value <= 0)
+        OnHealthChanged?.Invoke(currentHealth);
+
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -28,10 +30,10 @@ public class Health : NetworkBehaviour
 
     private void Die()
     {
-        Debug.Log("Player has died");
-        // Add respawn or death handling logic here
+        Debug.Log(gameObject.name + " has died");
+        // Add respawn or death handling logic here for any object
     }
 
-    public float GetCurrentHealth() => currentHealth.Value;
-    public float GetMaxHealth() => maxHealth;
+    public int GetCurrentHealth() => currentHealth;
+    public int GetMaxHealth() => maxHealth;
 }
