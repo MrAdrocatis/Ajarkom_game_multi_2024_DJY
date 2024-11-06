@@ -26,6 +26,15 @@ public class Weapon : NetworkBehaviour
         }
     }
 
+    public void AddAmmo(int amount)
+    {
+        currentBullets = Mathf.Min(currentBullets + amount, maxBullets);
+        if (ammoDisplay != null)
+        {
+            ammoDisplay.UpdateAmmoDisplay(currentBullets);
+        }
+    }
+
     public void Fire()
     {
         if (currentBullets > 0 && Time.time >= nextFireTime)

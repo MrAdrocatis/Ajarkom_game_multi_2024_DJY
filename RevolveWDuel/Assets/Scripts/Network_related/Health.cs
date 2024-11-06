@@ -26,6 +26,11 @@ public class Health : NetworkBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        currentHealth.Value = Mathf.Min(currentHealth.Value + amount, maxHealth);
+    }
+
     private void Die()
     {
         Debug.Log("Player has died");
