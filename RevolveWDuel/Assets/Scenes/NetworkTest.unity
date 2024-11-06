@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostBtn: {fileID: 1168804177}
-  serverBtn: {fileID: 0}
+  serverBtn: {fileID: 1085414241}
   clientBtn: {fileID: 1226423526}
 --- !u!1 &1674530565
 GameObject:
