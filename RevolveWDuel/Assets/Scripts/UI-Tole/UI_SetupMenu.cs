@@ -11,7 +11,7 @@ public class UI_SetupMenu : NetworkBehaviour
     [SerializeField] private Button hostButton;
     [SerializeField] private Button clientButton;
     [SerializeField] private TextMeshProUGUI playersCount;
-    [SerializeField] private int requiredPlayers = 1; // Jumlah pemain yang diperlukan untuk memulai game
+    [SerializeField] private int requiredPlayers = 2; // Jumlah pemain yang diperlukan untuk memulai game
     [SerializeField] private string gameSceneName = "GameScene"; // Nama scene permainan
 
     private NetworkVariable<int> playersNum = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);
